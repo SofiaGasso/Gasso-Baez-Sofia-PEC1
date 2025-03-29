@@ -1,0 +1,99 @@
+---
+title: "PEC 1 - Análisis de datos ómicos"
+author: "Sofía Gassó - 49375145X"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+# Tabla de Contenidos
+
+1.  *Abstract*
+
+2.  Objetivos
+
+3.  Métodos
+
+4.  Resultados
+
+5.  Discusión
+
+6.  Conclusiones
+
+7.  Referencias
+
+8.  Bibliografía consultada
+
+# Abstract
+
+# Objetivos
+
+Los objetivos que se desean alcanzar en este trabajo de análisis y exploración de datos con herramientas de Bioconductor son los siguientes:
+
+-   Seleccionar y descargar un dataset de metabolómica (human_cachexia).
+
+-   Crear un objeto de clase *SummarizedExperiment* con datos y metadatos.
+
+-   Realizar un análisis exploratorio de los datos.
+
+-   Interpretar los resultados desde el punto de vista biológico.
+
+-   Documentar y compartir el trabajo en un repositorio de GitHub.
+
+# Métodos
+
+## Selección del Dataset
+
+Para realizar esta exploración multivariante de los datos se ha seleccionado el dataset **human_cachexia.csv**, del repositorio proporcionado para realizar este estudio, el cual recoge diferentes analitos presentes en muestras de orina de 2 grupos de pacientes: pacientes que sufren de caquexia (pérdida extrema de peso corporal sin buscarlo) y el grupo control (no sufren de caquexia).
+
+
+
+```{r, DataSet}
+library(readr)
+human_cachexia <- read.csv("/Users/sofiagassobaez/Desktop/MasterBioinformatica/3r_semestre/Analisis de datos omicos/PEC1/human_cachexia.csv", header = TRUE, row.names = 1)
+head(human_cachexia)
+```
+
+
+
+
+
+
+```{r}
+# Crear objeto SummarizedExperiment
+metadata <- data.frame(Condition = factor(rep(c("Control", "Caquexia"), each = 5)))
+row.names(metadata) <- colnames(human_cachexia)
+se <- SummarizedExperiment(assays = list(counts = as.matrix(human_cachexia)), colData = metadata)
+
+# Comparación SummarizedExperiment vs ExpressionSet
+eset <- ExpressionSet(assayData = as.matrix(human_cachexia), phenoData = AnnotatedDataFrame(metadata))
+```
+
+
+# Resultados
+
+SummarizedExperiment is in many ways similar to the historical ExpressionSet, the main distinction being that SummarizedExperiment is more flexible in it’s row information, allowing both GRanges based as well as those described by arbitrary DataFrames. This makes it ideally suited to a variety of experiments, particularly sequencing based experiments such as RNA-Seq and ChIp-Seq.
+
+```{r}
+library(SummarizedExperiment)
+library(Biobase)
+
+
+
+
+```
+
+```{r}
+library(SummarizedExperiment)
+library(Biobase)
+
+```
+
+# Discusión
+
+# Conclusiones
+
+# Referencias
+
+# Bibliografía consultada
+
+-   *Pagès, M. M. V. o. J. H. H. (s. f.). SummarizedExperiment for Coordinating Experimental Assays, Samples, and Regions of Interest.* <https://bioconductor.org/packages/release/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html>
