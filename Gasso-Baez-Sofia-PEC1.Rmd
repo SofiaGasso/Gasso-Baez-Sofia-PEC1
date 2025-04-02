@@ -135,7 +135,7 @@ cachexia_datos <- as.data.frame(cachexia_matriz)
 
 # Se verifica que todas las columnas sean numéricas
 cachexia_datos_numericos <- cachexia_datos[, sapply(cachexia_datos, is.numeric)]
-print(head(cachexia_datos_numericos, 4)) # Se visualiza para comprobar
+print(head(cachexia_datos_numericos[, 1:3], 3)) # Se visualiza para comprobar
 
 # Se verifican las dimensiones antess de realizar el PCA
 print(dim(t(cachexia_datos_numericos)))  # Las filas deben coincidir con length(colData(cachexia_SE)$Condition)
@@ -185,6 +185,10 @@ En este informe se ha logrado analizar un conjunto de datos de metabolómica en 
 # Referencias
 
 Enlace al repositorio de GitHub: <https://github.com/SofiaGasso/Gasso-Baez-Sofia-PEC1>
+
+Control de versiones con GitHub desde RStudio:
+
+![](images/Captura de pantalla 2025-04-02 a las 21.16.37.png)
 
 # Bibliografía consultada
 
